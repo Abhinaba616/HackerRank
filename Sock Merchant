@@ -1,0 +1,38 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+# Complete the sockMerchant function below.
+def sockMerchant(n, ar):
+    counts = dict()
+    pair =0
+    for i in ar:
+        if i not in counts:
+            counts[i] = 1
+        else:
+            counts[i] += 1
+    for value in list(counts.values()):
+        if value % 2 == 0:
+            pair = pair + int(value / 2)
+        elif value % 2 != 0:
+            value = value - 1
+            pair = pair + int(value / 2)
+    print(pair)
+
+    return pair
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    n = int(input())
+
+    ar = list(map(int, input().rstrip().split()))
+
+    result = sockMerchant(n, ar)
+
+    fptr.write(str(result) + '\n')
+
+    fptr.close()
